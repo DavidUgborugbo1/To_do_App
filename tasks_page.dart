@@ -40,8 +40,17 @@ class _TasksPageState extends State<TasksPage> {
     );
   }
 
-  
+  Widget _todoList(){
+    return ListView.builder(itemBuilder: (BuildContext context, int index){
 
+      return ListTile(
+        title: Text("Workout"),
+        subtitle: Text(DateTime.now().toString()),
+        trailing: Icon(Icons.check_box_outline_blank),
+      );
+    });
+  }
+  
 
   Widget _tasksWidget(){
     return FutureBuilder( future: null,
