@@ -9,6 +9,7 @@ class TasksPage extends StatefulWidget {
 
 class _TasksPageState extends State<TasksPage> {
   double? _deviceHeight, _deviceWidth;
+  String? content;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,21 @@ class _TasksPageState extends State<TasksPage> {
         context: context, builder:(BuildContext _context){
       return AlertDialog(
         title: const Text("Add a Task"),
-        content: TextField(),
+        content: TextField(
+          onSubmitted: (value){
+            setState(() {
+              print(value);
+              Navigator.pop(context);
+            });
+          },
+
+          onChanged: (value){
+            setState(() {
+              content = value;
+              print(value);
+            });
+          },
+        ),
       );
     });
   }
