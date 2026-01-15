@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class TasksPage extends StatefulWidget {
   const TasksPage({Key? key}) : super(key: key);
@@ -10,6 +11,7 @@ class TasksPage extends StatefulWidget {
 class _TasksPageState extends State<TasksPage> {
   double? _deviceHeight, _deviceWidth;
   String? content;
+  Box? _box;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,15 @@ class _TasksPageState extends State<TasksPage> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: _deviceHeight! * 0.1,
-        title: const Text("Welcome to my To Do App"),
+        backgroundColor: Colors.purple,
+        centerTitle: true,
+        title: const Text("Daily Planner",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: _tasksWidget(),
         floatingActionButton: FloatingActionButton(
@@ -31,7 +41,15 @@ class _TasksPageState extends State<TasksPage> {
 
 
   Widget _tasksWidget(){
-    return Container();
+    return FutureBuilder( future: null,
+        builder: (BuildContext context, AsyncSnapshot snapshot){
+      if(snapshot.hasData){
+        _box = snapshot.data;
+        return Center();
+      }else{
+        return Center(child: const CircularProgressIndicator());
+      }
+    });
   }
 
 
