@@ -55,7 +55,15 @@ class _TasksPageState extends State<TasksPage> {
         ):
         Icon(Icons.check_box_outline_blank),
         onTap: (){
-          
+          task.done = !task.done;
+          _box!.putAt(index, task.toMap());
+
+          setState(() {});
+        },
+
+        onLongPress: (){
+          _box!.deleteAt(index);
+          setState(() {});
         },
       );
     });
