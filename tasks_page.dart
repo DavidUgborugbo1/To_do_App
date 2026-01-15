@@ -71,11 +71,11 @@ class _TasksPageState extends State<TasksPage> {
   
 
   Widget _tasksWidget(){
-    return FutureBuilder( future: null,
+    return FutureBuilder( future: Hive.openBox("Tasks"),
         builder: (BuildContext context, AsyncSnapshot snapshot){
       if(snapshot.hasData){
         _box = snapshot.data;
-        return Center();
+        return _todoList();
       }else{
         return Center(child: const CircularProgressIndicator());
       }
