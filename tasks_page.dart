@@ -41,12 +41,22 @@ class _TasksPageState extends State<TasksPage> {
   }
 
   Widget _todoList(){
-    return ListView.builder(itemBuilder: (BuildContext context, int index){
+    List tasks = _box!.values.toList();
+    return ListView.builder(
+      itemCount: tasks.length,
+        itemBuilder: (BuildContext context, int index){
+        var task = Task.fromMap(tasks[index]);
 
       return ListTile(
-        title: Text("Workout"),
-        subtitle: Text(DateTime.now().toString()),
-        trailing: Icon(Icons.check_box_outline_blank),
+        title: Text(task.todo),
+        subtitle: Text(task.timeStamp.toString()),
+        trailing: task.done ? Icon(Icons.check_box_outlined,
+          color: Colors.green,
+        ):
+        Icon(Icons.check_box_outline_blank),
+        onTap: (){
+          
+        },
       );
     });
   }
